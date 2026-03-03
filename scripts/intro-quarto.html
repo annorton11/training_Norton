@@ -116,8 +116,8 @@ div.csl-indent {
 </header>
 
 
-<section id="quarto-syntax-practice" class="level1">
-<h1>Quarto syntax practice:</h1>
+<section id="quarto-syntax-practice" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-syntax-practice">Quarto syntax practice:</h2>
 <section id="formatting" class="level4">
 <h4 class="anchored" data-anchor-id="formatting">formatting:</h4>
 <p>-<em>itals</em> italicized</p>
@@ -200,31 +200,32 @@ div.csl-indent {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bg_chem<span class="sc">$</span>Date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="b.-calculate-mean-redfield-ratio" class="level4">
-<h4 class="anchored" data-anchor-id="b.-calculate-mean-redfield-ratio">b. Calculate mean Redfield ratio</h4>
+<section id="b.-calculate-means-for-redfield-ratio" class="level4">
+<h4 class="anchored" data-anchor-id="b.-calculate-means-for-redfield-ratio">b. Calculate means for Redfield ratio</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get means of involved nutrients</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nitrate <span class="ot">&lt;-</span> <span class="fu">mean</span>(bg_chem<span class="sc">$</span>NO3)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nitrite <span class="ot">&lt;-</span> <span class="fu">mean</span>(bg_chem<span class="sc">$</span>NO2)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ammn <span class="ot">&lt;-</span> <span class="fu">mean</span>(bg_chem<span class="sc">$</span>NH4)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>phosph <span class="ot">&lt;-</span> <span class="fu">mean</span>(bg_chem<span class="sc">$</span>P)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate ratio</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> (nitrate <span class="sc">+</span> nitrite <span class="sc">+</span> ammn) <span class="sc">/</span> phosph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>phosph <span class="ot">&lt;-</span> <span class="fu">mean</span>(bg_chem<span class="sc">$</span>P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="c.-calculate-redfield-ratio" class="level4">
+<h4 class="anchored" data-anchor-id="c.-calculate-redfield-ratio">c.&nbsp;Calculate Redfield ratio</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate ratio</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> (nitrate <span class="sc">+</span> nitrite <span class="sc">+</span> ammn) <span class="sc">/</span> phosph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">3. Conclusion</h2>
 <p>:) Here is the mean ratio we calculated: <strong>6.22</strong></p>
-</section>
-<section id="c.-plot-redfield-ratio" class="level4">
-<h4 class="anchored" data-anchor-id="c.-plot-redfield-ratio">c.&nbsp;Plot Redfield ratio</h4>
-</section>
-</section>
-<section id="conclusion" class="level2 unnumbered">
-
 
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">3. Conclusion</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-oke2020" class="csl-entry" role="listitem">
 Oke, K. B., C. J. Cunningham, P. A. H. Westley, M. L. Baskett, S. M. Carlson, J. Clark, A. P. Hendry, et al. 2020. <span>“Recent Declines in Salmon Body Size Impact Ecosystems and Fisheries.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-17726-z">https://doi.org/10.1038/s41467-020-17726-z</a>.
 </div>
