@@ -1,0 +1,103 @@
+---
+title: "Introduction to Quarto"
+format: html
+bibliography: references.bib
+---
+
+## Quarto syntax practice:
+
+#### formatting:
+
+\-*itals* italicized
+
+\- **BOLD** bolded
+
+\- [linked phrase](https://calendar.google.com/calendar/u/0/r/week?tab=rc) takes to google cal!
+
+\- image
+
+\- analysis analysis analysis oops I need a reference go to visual \> tab subheader \> insert citation... result: [@oke2020]
+
+\- need a table visual \> table tab:
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+# 2.7 Practice: Literate Analysis with Ocean Water Samples
+
+## 1. Introduction
+
+#### a. About the data
+
+-   Water sample data from Arctic Ocean
+-   Data download from the Arctic Data Center: [Tweedie ADC data](http://doi.org/10.18739/A25T3FZ8X)
+
+#### b. Setup
+
+```{r}
+#| warning: false
+
+library(readr)
+library(here)
+
+```
+
+#### c. Read in data
+
+```{r}
+#| warning: false
+bg_chem <- read_csv(here("data/BGchem2008data.csv"))
+
+```
+
+## 2. Analysis
+
+#### a. Calculate summary statistics
+
+```{r}
+#| eval: false
+#| echo: true
+
+#print column names
+colnames(bg_chem)
+
+# show data structure
+str(bg_chem)
+
+# show first 6 lines for understanding
+head(bg_chem)
+
+# summaries by column
+summary(bg_chem)
+
+# unique alue in a column
+unique(bg_chem$Date)
+
+```
+
+#### b. Calculate means for Redfield ratio
+
+```{r}
+# get means of involved nutrients
+nitrate <- mean(bg_chem$NO3)
+nitrite <- mean(bg_chem$NO2)
+ammn <- mean(bg_chem$NH4)
+phosph <- mean(bg_chem$P)
+
+
+
+```
+
+
+#### c. Calculate Redfield ratio
+
+```{r}
+#calculate ratio
+ratio <- (nitrate + nitrite + ammn) / phosph
+```
+
+## 3. Conclusion
+:) Here is the mean ratio we calculated: **`r round(ratio, 2)`**
