@@ -1,5 +1,0 @@
----
-title: "Get hub publish"
-format: html
----
-
