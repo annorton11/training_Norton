@@ -27,14 +27,52 @@ head(species, 3)
 
 # read in the data
 ```{r}
-preds <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A9ffec04c-7e2d-41dd-9e88-b6c2e8c4375e")
-nests <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A982bd2fc-4edf-4da7-96ef-0d11b853102d")
-eggs <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A4b219711-2282-420a-b1d6-1893fe4a74a6")
+predator_survey <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A9ffec04c-7e2d-41dd-9e88-b6c2e8c4375e")
+nest_data <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A982bd2fc-4edf-4da7-96ef-0d11b853102d")
+egg_measures <- read_csv("https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A4b219711-2282-420a-b1d6-1893fe4a74a6")
  
 ```
 
 # function for adding species name to codes
 ```{r}
+predators <- left_join(predator_survey, species, by = c("species"="alpha_code"))
 
+#' Add Bird sps common name to match BBL alpha code
+#'
+#' @param x data frame containing BBL species codes in column `species` 
+#'
+#' @returns input data frame with a new column "common_name"
+#' @export
+#'
+#' @examples full_sps_add(nesting_counts)
+full_sps_add <- function(x) {
+  webpage <- rvest::read_html("https://www.pwrc.usgs.gov/BBL/Bander_Portal/login/speclist.php")
+
+  tbls <- rvest::html_nodes(webpage, "table") %>% #this says read the html node file (website) and pull the table
+    rvest::html_table(fill = TRUE)     
+
+  species <- tbls[[1]] %>% #then format the table
+    janitor::clean_names() %>% 
+    select(alpha_code, common_name) %>% 
+    mutate(alpha_code = tolower(alpha_code))
+  
+  result <- left_join(x, species, by = c("species" = "alpha_code"))
+  return(result)
+}
+
+
+
+```
+
+# apply function to our other DFs
+```{r}
+nests <- full_sps_add(nest_data) %>% select(c(year, site, uniqueID, plot, species, lat_corrected, long_corrected, common_name))%>% 
+    filter(!is.na(common_name))
+
+eggs <- full_sps_add(egg_measures) %>% select(c(-comments, -book_page))%>% 
+    filter(!is.na(common_name))
+
+pred <- full_sps_add(predator_survey) %>% select(c(-comments, -observer))%>% 
+    filter(!is.na(common_name))
 ```
 

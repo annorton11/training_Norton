@@ -1,0 +1,39 @@
+---
+title: "Spatial Data lesson"
+format: html
+---
+# Setup
+
+## install packages
+```{r}
+library(readr)
+library(here)
+library(sf)
+library(ggplot2)
+library(leaflet)
+library(scales)
+library(ggspatial)
+library(dplyr)
+```
+
+## Download  and load data
+```{r}
+knb_url <- "https://dev.nceas.ucsb.edu/knb/d1/mn/v2/object/urn%3Auuid%3Aaceaecb2-1ce0-4d41-a839-d3607d32bb58"
+
+# download zip to data folder
+download.file(url = knb_url, destfile = '../data/shapefile_demo_data.zip')
+
+# unzip data
+unzip('../data/shapefile_demo_data.zip', exdir = '../data')
+
+# remove .zip file
+file.remove('../data/shapefile_demo_data.zip')
+```
+
+## Explore data
+```{r}
+ak_region <- read_sf('../data/ak_regions_simp.shp')
+
+plot(ak_region)
+```
+
